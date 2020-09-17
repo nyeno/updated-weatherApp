@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Smash It">
     <link rel = "stylesheet" href ="style.css"/>
-    <link rel = 'manifest' href="manifest.json">
+    <title>Laura's Weather App</title>
+    <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Weather PWA">
-    <link rel="apple-touch-icon" href="/img/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" href="img/icons/icon-152x152.png">
     <meta name="theme-color" content="#2F3BA2" />
-    <title>Laura's Weather App</title>
+    <meta name="description" content="A progressive web weather app project that optimizes localStorage and serviceWorker.">
 </head>
 <body>
     <h1>Smash It's Weather App</h1>
     <nav class="search">
-        <form class="location" name="searchForm">
-            <input type="text" autocomplete="off" name="city" aria-label="Search for Weather" class="search-input" placeholder="What's your location?" id="city-weather">
+        <form class="location">
+            <input type="text" autocomplete="off" name="city"  class="search-input" placeholder="What's your location?" aria-label="A weather search form">
         </form>
     </nav>
     <main class="card display" >
         <p class="city">Lagos, Nigeria</p>
         <p class="date">Tuesday, 7th September 2020</p>
-        <p class='icons'><img src ='http://openweathermap.org/img/wn/10d@4x.png' class='image'></p>
+        <p class='icons'><img src ='https://openweathermap.org/img/wn/10d@4x.png' class='image' alt="An icon depicting the weather"></p>
         <p class="weather">Sunny</p>
         <p class="temp">Temp: 15 <span>&deg; C</span> </p>
         <p class="hi-low">hi-low: 15 &deg; C / 16 &deg; C</p>
@@ -33,49 +33,12 @@
         <button onclick="localStorage.clear()" id="button">Click to refresh city search history</button>
     </footer>
     <script src ="main.js"></script>
-    
-    <script src="install.js"></script>
- 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-
- <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="/__/firebase/7.20.-/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="/__/firebase/7.20.-/firebase-analytics.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="/__/firebase/7.20.-/firebase-auth.js"></script>
-  <script src="/__/firebase/7.20.-/firebase-firestore.js"></script>
-   <script src="/__/firebase/init.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-
-
-<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyASX6DpDtDKpBxS7PcVZNkA3xiTXpk-iQc",
-    authDomain: "laura-s-weather-app.firebaseapp.com",
-    databaseURL: "https://laura-s-weather-app.firebaseio.com",
-    projectId: "laura-s-weather-app",
-    storageBucket: "laura-s-weather-app.appspot.com",
-    messagingSenderId: "637294852753",
-    appId: "1:637294852753:web:bd7e29283d27915fc09d30",
-    measurementId: "G-TV6QW0S45K"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-<script>
-    if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
+    <!--<script src ="install.js"></script>-->
+    <script>
+        //script for service worker
+        if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
         .then((reg) => {
           console.log('Service worker registered.', reg);
         });

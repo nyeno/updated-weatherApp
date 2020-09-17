@@ -1,4 +1,4 @@
-//const base ='http://api.openweathermap.org/data/2.5/weather?q=Lagos&appid=2a612744acca1e0e9951b65e45358875'
+//const base ='https://api.openweathermap.org/data/2.5/weather?q=Lagos&appid=2a612744acca1e0e9951b65e45358875'
 const key = '2a612744acca1e0e9951b65e45358875'
 
 const date = new Date()
@@ -24,7 +24,7 @@ const celcius =(kel) => {
 }
 // fetch data from openweathermap
 const theCity = async (city) => {
-    const baseURL = 'http://api.openweathermap.org/data/2.5/weather'
+    const baseURL = 'https://api.openweathermap.org/data/2.5/weather'
     const query = `?q=${city}&appid=${key}`
 
     const response = await fetch(baseURL+query)
@@ -88,6 +88,20 @@ searchCity.addEventListener('submit', (event) => {
     console.log(citySearched)
     searchCity.reset()
 
+
+    if ('caches' in window) {
+        const baseURL = 'https://api.openweathermap.org/data/2.5/weather'
+        const query = `?q=${citySearched}&appid=${key}`
+        // Get cached weather data if exists
+        caches.match(baseURL+query).then(function(response) {
+          if (response) {
+            response.json().then((json) =>{
+                console.log(json)
+                updateWeatherApp(json)
+            });
+          }
+        });
+      }
     if (setCity(citySearched)){
         const e = getCity(citySearched)
         updateWeatherApp(e)
@@ -98,7 +112,7 @@ searchCity.addEventListener('submit', (event) => {
             updateWeatherApp(data)
         })
     }
-    
+
 })
 
 //Chack if to use local storage
